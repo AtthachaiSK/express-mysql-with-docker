@@ -1,0 +1,1 @@
+docker image prune && docker container prune && docker network prune && docker system prune --volumes

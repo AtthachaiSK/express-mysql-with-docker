@@ -1,0 +1,30 @@
+version: "3"
+services:
+  db_msql:
+    container_name: mysql_container
+    build: ./db_mysql/
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./db_mysql/cacustom.cnf:/etc/mysql/conf.d/custom.cnf
+    environment: 
+      - TZ=Asia/Jakarta
+    ports:
+      - '3306:3306'
+
+  # REST_API:
+  #   build: ./
+  #   container_name: express_api
+  #   restart: always
+  #   # ports:
+  #   #   - "3000:3000"
+  #   volumes:
+  #     - ./logs:/home/node/app/logs
+  #     - ./src:/home/node/app/src
+  #   depends_on:
+  #     - DB_MYSQL
+
+
+   
+  
+    
