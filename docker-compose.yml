@@ -2,7 +2,7 @@ version: "3"
 services:
   db_msql:
     container_name: mysql_container
-    build: ./db_mysql/
+    build: ./db_mysql
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     volumes:
@@ -11,19 +11,31 @@ services:
       - TZ=Asia/Jakarta
     ports:
       - '3306:3306'
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=toor --execute \"SHOW DATABASES;\""
+      interval: 3s
+      timeout: 20s
+      retries: 10
 
-  # REST_API:
-  #   build: ./
-  #   container_name: express_api
-  #   restart: always
-  #   # ports:
-  #   #   - "3000:3000"
-  #   volumes:
-  #     - ./logs:/home/node/app/logs
-  #     - ./src:/home/node/app/src
-  #   depends_on:
-  #     - DB_MYSQL
-
+  rest_api:
+    build: ./rest_api
+    container_name: rest_api_container
+    restart: always
+    # ports:
+    #   - "3000:3000"
+    depends_on:
+      db_msql:
+        condition: service_healthy
+  nginx:
+    build: ./nginx
+    restart: always
+    container_name: nginx_container
+    ports:
+      - 80:80
+    depends_on:
+      - rest_api
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
 
    
   

@@ -12,8 +12,8 @@ const limiter = rateLimit({
     message: 'Too Many Request from this IP, please try again in an hour'
 });
 app.use("/api",newsRoutes);
-app.get("/hello", (req, res) => {
-    res.send("Hello World!")
+app.get("/", (req, res) => {
+    res.send("Applocation Version 1.0.0")
 });
 app.use('*', (req, res, next) => {
     // const err = new AppError(404, 'fail', 'undefined route');

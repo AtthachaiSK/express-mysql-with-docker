@@ -1,6 +1,9 @@
 FROM mysql:8.0.20
 ENV MYSQL_ROOT_USERNAME root  
-ENV MYSQL_ROOT_PASSWORD toor  
+ENV MYSQL_ROOT_PASSWORD toor
+ENV MYSQL_USER  testuser  
+ENV MYSQL_PASSWORD testuser
 ENV MYSQL_DATABASE DBMOCKUP
+
 EXPOSE 3306
 COPY ./scripts/ /docker-entrypoint-initdb.d/
