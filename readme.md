@@ -11,7 +11,7 @@ To get the Node server running locally:
 ## Dependencies
 
 - [ExpressJS](https://github.com/expressjs/express) - The server for handling and routing HTTP requests
-- [MySQL](https://github.com/mysql/mysql-docker) - For modeling and mapping MongoDB data to javascript 
+- [MySQL](https://github.com/mysql/mysql-docker) - For modeling and mapping MySQL data to javascript 
 
 
 ## Application Structure
